@@ -26,39 +26,26 @@ public class App {
         sc.close();
         */
         int[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        getIndex(values, 10,15);
+        String s = getIndex(values, 10,15);
+        System.out.println(s);
     }
-    public static void getIndex(int[] values, int n, int sum){
+    public static String getIndex(int[] values, int n, int sum){
         int startposition=0;
-        int endposition=0;
-        boolean found=false;
+       
         for(int k=0;k<n-1;k++){
-             found=false;
             int temp=values[k];
             startposition=k;
             if(temp==sum)
             {
-                endposition=k;
-                found=true;
-                break;
+                return String.format("%d  %d", startposition+1,k+1);
             }
             for(int j=k+1;j<n&& temp<sum;j++){
                 temp+=values[j];
                 if(temp==sum){
-                    endposition=j;
-                    found=true;
-                    break;
+                    return String.format("%d  %d", startposition+1,j+1);
                 }
             }
-            if(found==true)
-                break;
         }
-        if(found==true)
-        {
-            System.out.print(startposition+1);
-            System.out.print(" ");
-            System.out.print(endposition+1);
-        }
-
+        return "-1";
     }
 }
